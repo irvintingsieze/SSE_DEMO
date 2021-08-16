@@ -11,7 +11,7 @@ public class AES_Controller {
     public AES_Encrypt aes(@RequestBody UserLogin login){
         System.out.println(login.getPassword());
         System.out.println(login.getUsername());
-        return AES_Service.aes_main(login.getUsername(),login.getPassword());
+        return AES_Service.main_aes(login.getUsername(),login.getPassword());
         //return "Greetings from Spring Boot!";
     }
 }
