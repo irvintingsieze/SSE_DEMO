@@ -1,7 +1,10 @@
 package com.sse.file.encryption.service;
 
+import com.sse.file.encryption.entity.AES_Encrypt;
+
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -96,9 +99,11 @@ public class AES_Service {
         return result;
     }
 
-    public static void main(String args[]){
-        byte[] content = {1, 2, 3};
-        byte[] password = {3, 2, 1, 6};
+    public static AES_Encrypt main_aes(String content_input, String password_input){
+        byte [] content = content_input.getBytes(StandardCharsets.UTF_8);
+        byte [] password = password_input.getBytes(StandardCharsets.UTF_8);
+        //byte[] content = {1, 2, 3};
+        //byte[] password = {3, 2, 1, 6};
 
         byte[] content_encrypt = AES_Service.encrypt(content, password);
         String hex_encrypt = AES_Service.parseByte2HexStr(content_encrypt);
@@ -108,5 +113,6 @@ public class AES_Service {
 
         for(int i=0; i<content.length; i++)
             System.out.print(content_decrypt[i] + " ");
+        return new AES_Encrypt(hex_encrypt,content_decrypt[0]+"");
     }
 }
